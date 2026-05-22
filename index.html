@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rich Gibbs — indie operator &amp; builder</title>
+<meta name="description" content="Shipping AI products, security audits, and open tools. ListingLift, Checkpoint, Tuck Sentinel, and more.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07111f">
+<!-- og:start -->
+<link rel="canonical" href="https://richgibbs.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rich Gibbs">
+<meta property="og:title" content="Rich Gibbs — indie operator &amp; builder">
+<meta property="og:description" content="Shipping AI products, security audits, and open tools. ListingLift, Checkpoint, Tuck Sentinel, and more.">
+<meta property="og:url" content="https://richgibbs.dev/">
+<meta property="og:image" content="https://richgibbs.dev/og-portfolio.png?v=20260522b">
+<meta property="og:image:secure_url" content="https://richgibbs.dev/og-portfolio.png?v=20260522b">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rich Gibbs — indie operator &amp; builder shipping AI products and tools.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GibbssRich">
+<meta name="twitter:creator" content="@GibbssRich">
+<meta name="twitter:title" content="Rich Gibbs — indie operator &amp; builder">
+<meta name="twitter:description" content="Shipping AI products, security audits, and open tools. ListingLift, Checkpoint, Tuck Sentinel, and more.">
+<meta name="twitter:image" content="https://richgibbs.dev/og-portfolio.png?v=20260522b">
+<meta name="twitter:image:alt" content="Rich Gibbs — indie operator &amp; builder shipping AI products and tools.">
+<!-- og:end -->
+<style>
+  :root{
+    --navy:#07111f;
+    --navy-2:#0c1a2d;
+    --navy-3:#111f35;
+    --cyan:#00d5ff;
+    --cyan-2:#36e3ff;
+    --text:#e6eef7;
+    --muted:#9fb5c8;
+    --line:rgba(0,213,255,.25);
+    --radius:22px;
+    --grad:linear-gradient(135deg,#00d5ff 0%,#6aa8ff 100%);
+    --green:#00e5a0;
+    --green-dim:rgba(0,229,160,.12);
+    --amber:#ffb020;
+    --amber-dim:rgba(255,176,32,.14);
+    --purple:#8b6fff;
+    --purple-dim:rgba(139,111,255,.13);
+    --shadow-card:0 2px 16px rgba(0,0,0,.45);
+    --shadow-feat:0 4px 32px rgba(0,213,255,.08),0 2px 16px rgba(0,0,0,.55);
+    --shadow-feat-hover:0 8px 48px rgba(0,213,255,.18),0 4px 24px rgba(0,0,0,.65);
+    --t-fast:160ms ease;
+    --t-med:260ms cubic-bezier(.25,.46,.45,.94);
+    --font-sans:'Inter','Inter var',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--font-sans);
+    background:var(--navy);
+    color:var(--text);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    overflow-wrap:break-word;
+  }
+  img,svg{max-width:100%;height:auto;display:block}
+
+  /* Skip link */
+  .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .skip:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;padding:.6rem .9rem;background:var(--cyan);color:var(--navy);font-weight:600;border-radius:8px;z-index:200}
+
+  /* Focus rings */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--cyan-2);outline-offset:3px;border-radius:6px}
+
+  /* Reduced motion */
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+  /* ── NAV ── */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 clamp(20px,5vw,80px);
+    background:rgba(7,17,31,.92);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-left{display:flex;align-items:center;gap:24px}
+  .nav-logo{
+    font-weight:700;
+    font-size:17px;
+    color:var(--text);
+    text-decoration:none;
+    letter-spacing:.01em;
+  }
+
+  /* Products dropdown */
+  .nav-dropdown{position:relative}
+  .nav-dropdown-btn{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-family:var(--font-sans);
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    transition:color var(--t-fast),background var(--t-fast);
+  }
+  .nav-dropdown-btn:hover{color:var(--text);background:rgba(255,255,255,.05)}
+  .nav-dropdown-menu{
+    display:none;
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    background:var(--navy-3);
+    border:1px solid rgba(0,213,255,.18);
+    border-radius:14px;
+    padding:6px;
+    min-width:210px;
+    box-shadow:0 8px 32px rgba(0,0,0,.5);
+    z-index:200;
+  }
+  .nav-dropdown-menu.open{display:block}
+  .nav-dropdown-menu a{
+    display:block;
+    padding:9px 14px;
+    color:var(--text);
+    text-decoration:none;
+    font-size:14px;
+    border-radius:9px;
+    transition:background var(--t-fast),color var(--t-fast);
+  }
+  .nav-dropdown-menu a:hover{background:rgba(0,213,255,.08);color:var(--cyan)}
+
+  .nav-cta{
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy);
+    text-decoration:none;
+    padding:8px 18px;
+    border-radius:999px;
+    background:var(--grad);
+    white-space:nowrap;
+    transition:filter var(--t-fast),transform var(--t-fast);
+  }
+  .nav-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+  @media(max-width:768px){
+    .nav-dropdown{display:none}
+    .nav{padding:0 20px}
+  }
+
+  /* ── LAYOUT WRAP ── */
+  .wrap{max-width:1040px;margin:0 auto;padding:0 clamp(20px,5vw,80px)}
+
+  /* ── HERO ── */
+  .hero{padding:72px 0 56px}
+  .hero-eyebrow{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.16em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-size:clamp(26px,5vw,54px);
+    font-weight:700;
+    line-height:1.08;
+    letter-spacing:-.02em;
+    color:#fff;
+    margin:0 0 16px;
+    max-width:100%;
+    word-break:break-word;
+  }
+  .hero-sub{
+    font-size:clamp(14px,2vw,17px);
+    color:var(--muted);
+    max-width:520px;
+    margin:0 0 28px;
+    line-height:1.6;
+  }
+  .hero-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 14px;
+    list-style:none;
+    padding:0;margin:0;
+    font-size:clamp(12px,1.8vw,14px);
+  }
+  .hero-links a{color:var(--cyan);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px}
+  .hero-links a:hover{border-bottom-color:var(--cyan)}
+  .hero-links li+li::before{content:"\00B7";color:var(--muted);margin-right:10px;opacity:.6}
+  @media(max-width:480px){
+    .hero{padding:48px 0 40px}
+    .hero-links{gap:4px 10px}
+    .hero-links li+li::before{margin-right:6px}
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section{padding:56px 0 0}
+  .sect-label{
+    display:inline-flex;
+    align-items:center;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    background:rgba(0,213,255,.10);
+    border:1px solid rgba(0,213,255,.22);
+    border-radius:20px;
+    padding:4px 12px;
+    margin:0 0 12px;
+  }
+  .sect-head{
+    font-size:clamp(20px,3vw,28px);
+    font-weight:700;
+    color:var(--text);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .sect-sub{
+    font-size:14px;
+    font-weight:400;
+    color:var(--muted);
+  }
+  .sect-rule{
+    border:none;
+    height:1px;
+    background:linear-gradient(90deg,var(--cyan) 0%,transparent 100%);
+    margin:14px 0 28px;
+    opacity:.35;
+  }
+
+  /* ── BADGE BASE ── */
+  .badge{display:inline-flex;align-items:center;gap:5px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.05em;white-space:nowrap;padding:4px 10px}
+  .badge-new{background:rgba(255,176,32,.14);border:1px solid rgba(255,176,32,.3);color:#ffb020}
+  .badge-beta{background:rgba(74,122,170,.15);border:1px solid rgba(74,122,170,.3);color:#7ab3d9}
+  .badge-free{background:rgba(0,213,255,.10);border:1px solid rgba(0,213,255,.22);color:#00d5ff}
+  .badge-internal{background:rgba(139,111,255,.13);border:1px solid rgba(139,111,255,.28);color:#a899ff}
+  .badge-writing{background:rgba(159,181,200,.10);border:1px solid rgba(159,181,200,.20);color:#9fb5c8}
+
+  /* LIVE pill */
+  .badge-live{
+    display:inline-flex;
+    align-items:center;
+    gap:0;
+    background:rgba(0,229,160,.12);
+    border:1px solid rgba(0,229,160,.3);
+    color:#00e5a0;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.05em;
+    white-space:nowrap;
+    padding:4px 10px;
+  }
+  .badge-live .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:#00e5a0;
+    box-shadow:0 0 6px #00e5a0;
+    margin-right:5px;
+    flex-shrink:0;
+  }
+  .badge-divider{
+    display:inline-block;
+    width:1px;
+    height:10px;
+    background:rgba(0,229,160,.25);
+    margin:0 7px;
+  }
+  .badge-price{color:#b2f5e0}
+
+  /* Badge row */
+  .badge-row{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .badge-row-abs{
+    position:absolute;
+    top:20px;right:20px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+
+  /* ── FEATURED CARDS ── */
+  .feat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media(max-width:768px){
+    .feat-grid{grid-template-columns:1fr}
+  }
+
+  .feat-card{
+    position:relative;
+    overflow:hidden;
+    background:var(--navy-3);
+    border:1px solid rgba(0,213,255,.18);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-feat);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:transform var(--t-med),box-shadow var(--t-med),border-color var(--t-med);
+    opacity:0;
+    animation:cardIn .4s ease forwards;
+  }
+  .feat-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:2px;
+    background:var(--grad);
+    opacity:.7;
+    transition:opacity var(--t-fast);
+  }
+  .feat-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-feat-hover);
+    border-color:rgba(0,213,255,.38);
+  }
+  .feat-card:hover::before{opacity:1}
+
+  /* Wide EtsyPrompt card */
+  .feat-card-wide{grid-column:1/-1}
+  .feat-wide-inner{
+    display:flex;
+    flex-direction:row;
+    gap:32px;
+    align-items:center;
+  }
+  .feat-wide-left{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+  .feat-wide-right{display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:180px}
+  @media(max-width:768px){
+    .feat-card-wide{grid-column:1}
+    .feat-wide-inner{flex-direction:column;gap:16px}
+    .feat-wide-right{min-width:0;width:100%}
+  }
+
+  /* Card icon */
+  .card-icon{
+    width:40px;height:40px;
+    background:rgba(0,213,255,.10);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+    flex-shrink:0;
+  }
+
+  .feat-card h3{
+    font-size:20px;
+    font-weight:700;
+    color:var(--text);
+    margin:0;
+    padding-right:90px;
+    line-height:1.25;
+  }
+  .feat-card-wide h3{padding-right:0}
+
+  .feat-card p{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.65;
+    margin:0;
+  }
+
+  /* Stack tags */
+  .stack-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .stack-tag{
+    font-size:11px;
+    color:var(--muted);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:6px;
+    padding:3px 8px;
+  }
+
+  /* CTA link */
+  .card-cta{
+    font-size:13px;
+    font-weight:600;
+    color:var(--cyan);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    margin-top:4px;
+    transition:color var(--t-fast),transform var(--t-fast);
+  }
+  .card-cta:hover{color:var(--cyan-2);transform:translateX(2px)}
+
+  /* ── REGULAR CARDS ── */
+  .card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media(max-width:768px){.card-grid{grid-template-columns:1fr}}
+
+  .card{
+    position:relative;
+    background:var(--navy-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-card);
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    transition:transform var(--t-med),box-shadow var(--t-med),border-color var(--t-med);
+    opacity:0;
+    animation:cardIn .4s ease forwards;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(0,213,255,.25);
+    box-shadow:0 6px 28px rgba(0,213,255,.08);
+  }
+
+  .badge-row-abs-sm{
+    position:absolute;
+    top:18px;right:18px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+
+  .card h3{
+    font-size:17px;
+    font-weight:700;
+    color:var(--text);
+    margin:0;
+    padding-right:80px;
+    line-height:1.3;
+  }
+  .card p{
+    font-size:13px;
+    color:var(--muted);
+    margin:0;
+    line-height:1.6;
+  }
+  .card-foot{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:auto;
+  }
+  .card-links{display:flex;flex-wrap:wrap;gap:10px}
+
+  /* Services section single card */
+  .service-wrap{max-width:540px}
+
+  /* ── FOOTER ── */
+  footer{
+    padding:40px 0 48px;
+    border-top:1px solid var(--line);
+    margin-top:64px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer .row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    justify-content:space-between;
+    align-items:center;
+  }
+  footer a{color:var(--cyan);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  /* ── ANIMATION ── */
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ── RESPONSIVE BADGES at 480px ── */
+  @media(max-width:480px){
+    .badge-row-abs,.badge-row-abs-sm{
+      position:static;
+      margin-bottom:12px;
+    }
+    .feat-card h3,.card h3{padding-right:0}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Site">
+  <div class="nav-left">
+    <a class="nav-logo" href="/" aria-label="Rich Gibbs — home">
+      <span style="color:var(--cyan)">rich</span>gibbs.dev
+    </a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn" id="prod-btn" aria-haspopup="true" aria-expanded="false">
+        Products <span aria-hidden="true">▾</span>
+      </button>
+      <div class="nav-dropdown-menu" id="prod-menu" role="menu">
+        <a href="https://listinglift.richgibbs.dev" role="menuitem" rel="noopener">🏷️ ListingLift</a>
+        <a href="https://checkpoint.richgibbs.dev" role="menuitem" rel="noopener">✅ Checkpoint</a>
+        <a href="https://richgibbs.dev/optimizer" role="menuitem">✨ EtsyPrompt AI Optimizer</a>
+      </div>
+    </div>
+  </div>
+  <a class="nav-cta" href="mailto:support@richgibbs.dev">Contact</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <p class="hero-eyebrow">BUILDER · AI PRODUCTS · SECURITY</p>
+    <h1>I build tools that work.</h1>
+    <p class="hero-sub">Indie developer shipping AI products, security services, and open tools.</p>
+    <ul class="hero-links" aria-label="Profiles">
+      <li><a href="https://x.com/GibbssRich" rel="me noopener">@GibbssRich</a></li>
+      <li><a href="https://github.com/RichGibbs-prog" rel="me noopener">github/RichGibbs-prog</a></li>
+      <li><a href="https://blog.richgibbs.dev/" rel="noopener">blog.richgibbs.dev</a></li>
+      <li><a href="mailto:support@richgibbs.dev">support@richgibbs.dev</a></li>
+    </ul>
+  </header>
+
+  <!-- SECTION 1: AI PRODUCTS -->
+  <section class="section wrap" aria-labelledby="ai-h" id="ai-products">
+    <div class="sect-label">AI PRODUCTS</div>
+    <h2 class="sect-head" id="ai-h">AI Products <span class="sect-sub">Live, revenue-generating tools</span></h2>
+    <hr class="sect-rule">
+
+    <div class="feat-grid" id="feat-grid">
+
+      <!-- ListingLift -->
+      <div class="feat-card">
+        <div class="badge-row-abs">
+          <span class="badge badge-new">✦ NEW</span>
+          <span class="badge-live"><span class="dot"></span>LIVE<span class="badge-divider"></span><span class="badge-price">$14.99–$24.99/mo</span></span>
+        </div>
+        <div class="card-icon" aria-hidden="true">🏷️</div>
+        <h3>ListingLift</h3>
+        <p>Upload a product photo or paste an Etsy URL. GPT-4o generates an optimized 140-char title and 13 ranked tags — ready to publish in seconds.</p>
+        <div class="stack-tags">
+          <span class="stack-tag">Next.js</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">Stripe</span>
+          <span class="stack-tag">Etsy API</span>
+        </div>
+        <a class="card-cta" href="https://listinglift.richgibbs.dev" rel="noopener">Open app ↗</a>
+      </div>
+
+      <!-- Checkpoint -->
+      <div class="feat-card">
+        <div class="badge-row-abs">
+          <span class="badge badge-new">✦ NEW</span>
+          <span class="badge-live"><span class="dot"></span>LIVE<span class="badge-divider"></span><span class="badge-price">$49–$149/mo</span></span>
+        </div>
+        <div class="card-icon" aria-hidden="true">✅</div>
+        <h3>Checkpoint</h3>
+        <p>Paste your AI system prompt and define expected behaviors in plain English. Automated pass/fail scoring across GPT-4o and Claude — no code required.</p>
+        <div class="stack-tags">
+          <span class="stack-tag">Next.js</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">Claude</span>
+          <span class="stack-tag">Stripe</span>
+        </div>
+        <a class="card-cta" href="https://checkpoint.richgibbs.dev" rel="noopener">Open app ↗</a>
+      </div>
+
+      <!-- EtsyPrompt AI Optimizer — full width -->
+      <div class="feat-card feat-card-wide">
+        <div class="badge-row-abs">
+          <span class="badge badge-new">✦ NEW</span>
+          <span class="badge-live"><span class="dot"></span>LIVE<span class="badge-divider"></span><span class="badge-price">$19/mo</span></span>
+        </div>
+        <div class="feat-wide-inner">
+          <div class="feat-wide-left">
+            <div class="card-icon" aria-hidden="true">✨</div>
+            <h3>EtsyPrompt AI Optimizer</h3>
+            <p>AI-generated prompt packs tailored for Etsy sellers. Covers listings, SEO, product descriptions, and customer replies — one subscription, instant access.</p>
+          </div>
+          <div class="feat-wide-right">
+            <div class="stack-tags">
+              <span class="stack-tag">GPT-4o</span>
+              <span class="stack-tag">Stripe</span>
+            </div>
+            <a class="card-cta" href="https://richgibbs.dev/optimizer">Get access ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /feat-grid -->
+  </section>
+
+  <!-- SECTION 2: SERVICES -->
+  <section class="section wrap" aria-labelledby="svc-h" id="services">
+    <div class="sect-label">SERVICES</div>
+    <h2 class="sect-head" id="svc-h">Services <span class="sect-sub">Fixed-scope, async audits</span></h2>
+    <hr class="sect-rule">
+
+    <div class="service-wrap">
+      <div class="card" id="svc-card">
+        <div class="badge-row-abs-sm">
+          <span class="badge-live"><span class="dot"></span>LIVE<span class="badge-divider"></span><span class="badge-price">$9–$499</span></span>
+        </div>
+        <h3>Tuck Sentinel — QuickCheck</h3>
+        <p>Async security and cloud spend audits for indie founders. Fixed scope, written report, no calls.</p>
+        <div class="card-foot">
+          <div class="stack-tags">
+            <span class="stack-tag">Security</span>
+            <span class="stack-tag">DNS</span>
+            <span class="stack-tag">Linux</span>
+          </div>
+          <a class="card-cta" href="https://richgibbs.dev/quickcheck/">View service ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TOOLS & PROJECTS -->
+  <section class="section wrap" aria-labelledby="tools-h" id="tools">
+    <div class="sect-label">TOOLS &amp; PROJECTS</div>
+    <h2 class="sect-head" id="tools-h">Tools &amp; Projects <span class="sect-sub">Open, beta, and internal builds</span></h2>
+    <hr class="sect-rule">
+
+    <div class="card-grid" id="tools-grid">
+
+      <!-- Free Server & DNS Mini-Scans -->
+      <div class="card">
+        <div class="badge-row-abs-sm">
+          <span class="badge badge-free">FREE</span>
+        </div>
+        <h3>Free Server &amp; DNS Mini-Scans</h3>
+        <p>Instant Linux hygiene snapshot and email/DNS health check — no account needed.</p>
+        <div class="card-foot">
+          <div class="stack-tags">
+            <span class="stack-tag">Shell</span>
+            <span class="stack-tag">DNS</span>
+            <span class="stack-tag">Free</span>
+          </div>
+          <div class="card-links">
+            <a class="card-cta" href="https://blog.richgibbs.dev/quickcheck-mini/" rel="noopener">Server scan →</a>
+            <a class="card-cta" href="https://blog.richgibbs.dev/email-dns-mini/" rel="noopener">Email/DNS →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASL Translator MVP -->
+      <div class="card">
+        <div class="badge-row-abs-sm">
+          <span class="badge badge-beta">BETA</span>
+        </div>
+        <h3>ASL Translator MVP</h3>
+        <p>Real-time American Sign Language recognition in the browser via webcam and LSTM.</p>
+        <div class="card-foot">
+          <div class="stack-tags">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">MediaPipe</span>
+            <span class="stack-tag">LSTM</span>
+          </div>
+          <a class="card-cta" href="https://aslproject.richgibbs.dev/" rel="noopener">Try beta ↗</a>
+        </div>
+      </div>
+
+      <!-- Hermes Dashboard -->
+      <div class="card">
+        <div class="badge-row-abs-sm">
+          <span class="badge badge-internal">INTERNAL</span>
+        </div>
+        <h3>Hermes Dashboard</h3>
+        <p>Real-time server monitoring — CPU, memory, disk, services, SSH events and agent logs. Auto-refreshes every 10 seconds.</p>
+        <div class="card-foot">
+          <div class="stack-tags">
+            <span class="stack-tag">Next.js</span>
+            <span class="stack-tag">Shell</span>
+            <span class="stack-tag">Node.js</span>
+          </div>
+          <a class="card-cta" href="https://monitor.richgibbs.dev" rel="noopener">Internal ↗</a>
+        </div>
+      </div>
+
+      <!-- Blog -->
+      <div class="card">
+        <div class="badge-row-abs-sm">
+          <span class="badge badge-writing">WRITING</span>
+        </div>
+        <h3>Blog — Operator Notes</h3>
+        <p>Notes on EC2 hardening, DNS, Cloudflare, and shipping indie software from the server up.</p>
+        <div class="card-foot">
+          <div class="stack-tags">
+            <span class="stack-tag">Writing</span>
+            <span class="stack-tag">Markdown</span>
+          </div>
+          <a class="card-cta" href="https://blog.richgibbs.dev/" rel="noopener">Read ↗</a>
+        </div>
+      </div>
+
+    </div><!-- /tools-grid -->
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap row">
+    <span>Rich Gibbs · Central Time (US) · indie builder</span>
+    <span><a href="mailto:support@richgibbs.dev">support@richgibbs.dev</a></span>
+  </div>
+</footer>
+
+<script>
+  // Products dropdown
+  const btn = document.getElementById('prod-btn');
+  const menu = document.getElementById('prod-menu');
+  if(btn && menu){
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    });
+  }
+
+  // Card entrance animation with stagger
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.feat-card, .card');
+    cards.forEach((card, i) => {
+      card.style.animationDelay = (i * 70) + 'ms';
+    });
+  });
+</script>
+</body>
+</html>
